@@ -74,7 +74,7 @@ class Metasploit3 < Msf::Auxiliary
       result.each do |u|
 	url = (ssl ? 'https' : 'http') + "://#{target_host}/#{u}"	
 	vprint_status ("Opening #{url} in #{browser}")
-	`#{browser} #{url} &`
+	`#{browser} #{url}`
 
       end
 
