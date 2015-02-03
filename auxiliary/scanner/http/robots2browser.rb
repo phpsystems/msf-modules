@@ -63,7 +63,8 @@ class Metasploit3 < Msf::Auxiliary
         return
       end
 
-      print_status("[#{target_host}] #{tpath}robots.txt found")
+      vhost = datastore['VHOST']
+      print_status("[#{target_host} - #{vhost}] #{tpath}robots.txt found")
 
       # short url regex
       aregex = /llow:[ ]{0,2}(.*?)$/i
@@ -72,7 +73,7 @@ class Metasploit3 < Msf::Auxiliary
 
       vprint_status("[#{target_host}] #{tpath}robots.txt - #{result.join(', ')}")
       result.each do |u|
-	url = (ssl ? 'https' : 'http') + "://#{target_host}/#{u}"	
+	url = (ssl ? 'https' : 'http') + "://#{vhost}/#{u}"	
 	vprint_status ("Opening #{url} in #{browser}")
 	`#{browser} #{url}`
 
