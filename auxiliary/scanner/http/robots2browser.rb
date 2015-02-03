@@ -62,8 +62,12 @@ class Metasploit3 < Msf::Auxiliary
         print_status(res.body.inspect) if datastore['DEBUG']
         return
       end
-
-      vhost = datastore['VHOST']
+      
+      if not datastore['VHOST']
+        vhost = target_host
+      else 
+        vhost = datastore['VHOST']
+      end
       print_status("[#{target_host} - #{vhost}] #{tpath}robots.txt found")
 
       # short url regex
